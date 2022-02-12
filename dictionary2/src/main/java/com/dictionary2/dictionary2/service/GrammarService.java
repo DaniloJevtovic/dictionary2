@@ -37,12 +37,6 @@ public class GrammarService implements CrudService<Grammar> {
 	}
 
 	@Override
-	public Grammar update(String id, Grammar t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void deleteById(String id) {
 		grammarRepository.deleteById(id);
 	}

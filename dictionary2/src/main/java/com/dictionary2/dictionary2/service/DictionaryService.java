@@ -37,12 +37,6 @@ public class DictionaryService implements CrudService<Dictionary> {
 	}
 
 	@Override
-	public Dictionary update(String id, Dictionary t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void deleteById(String id) {
 		dictionaryRepository.deleteById(id);
 	}

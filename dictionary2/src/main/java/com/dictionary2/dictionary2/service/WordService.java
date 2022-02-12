@@ -37,15 +37,8 @@ public class WordService implements CrudService<Word> {
 	}
 
 	@Override
-	public Word update(String id, Word t) {
-		return null;
-	}
-
-	@Override
 	public void deleteById(String id) {
 		wordRepository.deleteById(id);
 	}
 
-	
-	
 }

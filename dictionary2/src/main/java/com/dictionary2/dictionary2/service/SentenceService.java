@@ -37,17 +37,8 @@ public class SentenceService implements CrudService<Sentence> {
 	}
 
 	@Override
-	public Sentence update(String id, Sentence t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void deleteById(String id) {
 		sentenceRepository.deleteById(id);
 	}
 
-	
-	
-	
 }
