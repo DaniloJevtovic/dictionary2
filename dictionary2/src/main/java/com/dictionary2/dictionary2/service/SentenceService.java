@@ -41,4 +41,12 @@ public class SentenceService implements CrudService<Sentence> {
 		sentenceRepository.deleteById(id);
 	}
 
+	public Page<Sentence> getSentencesForDic(String dicId, Pageable pageable) {
+		return sentenceRepository.findByDicId(dicId, pageable);
+	}
+
+	public Page<Sentence> getSentencesForGroup(String wgId, Pageable pageable) {
+		return sentenceRepository.findBySgId(wgId, pageable);
+	}
+
 }

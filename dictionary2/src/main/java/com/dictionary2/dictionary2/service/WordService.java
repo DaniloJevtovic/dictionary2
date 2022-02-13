@@ -41,4 +41,12 @@ public class WordService implements CrudService<Word> {
 		wordRepository.deleteById(id);
 	}
 
+	public Page<Word> getWordsForDic(String dicId, Pageable pageable) {
+		return wordRepository.findByDicId(dicId, pageable);
+	}
+
+	public Page<Word> getWordsForGroup(String wgId, Pageable pageable) {
+		return wordRepository.findByWgId(wgId, pageable);
+	}
+
 }
