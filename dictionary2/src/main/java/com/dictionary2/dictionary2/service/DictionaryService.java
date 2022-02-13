@@ -41,4 +41,8 @@ public class DictionaryService implements CrudService<Dictionary> {
 		dictionaryRepository.deleteById(id);
 	}
 
+	public List<Dictionary> getDictionariesForUser(String userId) {
+		return dictionaryRepository.findByUserId(userId);
+	}
+
 }
