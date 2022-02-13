@@ -40,4 +40,8 @@ public class GrammarService implements CrudService<Grammar> {
 	public void deleteById(String id) {
 		grammarRepository.deleteById(id);
 	}
+
+	public Page<Grammar> getGrammarsForDictionary(String dicId, Pageable pageable) {
+		return grammarRepository.findByDicId(dicId, pageable);
+	}
 }
