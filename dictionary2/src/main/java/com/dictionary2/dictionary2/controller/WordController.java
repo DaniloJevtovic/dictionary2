@@ -1,5 +1,7 @@
 package com.dictionary2.dictionary2.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,12 +22,22 @@ public class WordController extends CrudController<Word> {
 	private WordService wordService;
 
 	@GetMapping("/dic/{id}")
-	public Page<Word> getWordsForDic(@PathVariable String id, @PageableDefault(size = 1) Pageable pageable) {
+	public Page<Word> getWordsForDic(@PathVariable String id, @PageableDefault(size = 30) Pageable pageable) {
 		return wordService.getWordsForDic(id, pageable);
 	}
 
 	@GetMapping("/wg/{id}")
-	public Page<Word> getWordsForWg(@PathVariable String id, @PageableDefault(size = 1) Pageable pageable) {
+	public Page<Word> getWordsForWg(@PathVariable String id, @PageableDefault(size = 30) Pageable pageable) {
 		return wordService.getWordsForGroup(id, pageable);
+	}
+
+	@GetMapping("/dic/{id}/search/{value}")
+	public List<Word> searchInDic(@PathVariable String id, @PathVariable String value) {
+		return wordService.searchInDic(id, value);
+	}
+
+	@GetMapping("/wg/{id}/search/{value}")
+	public List<Word> searchInWg(@PathVariable String id, @PathVariable String value) {
+		return wordService.searchInWg(id, value);
 	}
 }
