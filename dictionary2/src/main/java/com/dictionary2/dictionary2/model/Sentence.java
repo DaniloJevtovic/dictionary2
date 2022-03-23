@@ -11,12 +11,14 @@ public class Sentence {
 
 	@Id
 	private String id;
-	
-	private String word;
-	
+
+	private String sentence;
+
 	private String translate;
-	
+
+	private String description;
+
 	private String sgId;
-	
+
 	private String dicId;
 }

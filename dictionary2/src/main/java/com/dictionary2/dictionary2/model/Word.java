@@ -16,6 +16,10 @@ public class Word {
 	
 	private String translate;
 	
+	private String description;	
+	
+//	private String picture;
+	
 	private String wgId;
 	
 	private String dicId;
