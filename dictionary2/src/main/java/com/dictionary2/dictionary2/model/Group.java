@@ -14,8 +14,11 @@ public class Group {
 
 	private String description;
 
+	private int numOfItems;
+
+	private String color;
+
 	private GroupType type;
 
 	private String dicId;
-
 }

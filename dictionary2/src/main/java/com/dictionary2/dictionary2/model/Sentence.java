@@ -18,6 +18,8 @@ public class Sentence {
 
 	private String description;
 
+	private Boolean favorite;
+
 	private String sgId;
 
 	private String dicId;

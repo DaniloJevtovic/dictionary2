@@ -20,6 +20,10 @@ public class Word {
 	
 //	private String picture;
 	
+	private Boolean favorite;
+	
+	private WordType type;
+	
 	private String wgId;
 	
 	private String dicId;
