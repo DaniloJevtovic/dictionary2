@@ -45,8 +45,14 @@ public class SentenceService implements CrudService<Sentence> {
 		return sentenceRepository.findByDicId(dicId, pageable);
 	}
 
-	public Page<Sentence> getSentencesForGroup(String wgId, Pageable pageable) {
-		return sentenceRepository.findBySgId(wgId, pageable);
+	public Page<Sentence> getSentencesForGroup(String sgId, Pageable pageable) {
+		return sentenceRepository.findBySgId(sgId, pageable);
+	}
+
+	public void updateFav(String id, Boolean favorite) {
+		Sentence sentence = findById(id);
+		sentence.setFavorite(favorite);
+		sentenceRepository.save(sentence);
 	}
 
 }
