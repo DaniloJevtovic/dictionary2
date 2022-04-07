@@ -41,9 +41,40 @@ public class GroupService implements CrudService<Group> {
 		groupRepository.deleteById(id);
 	}
 
-	// grupe rjeci i recenica za rjecnik
-	public List<Group> getAllGroupsForDictionary(String id, String type) {
+	// sve grupe za rjecnik (i grupe rjeci i grupe recenica)
+	public List<Group> getAllGroupsForDictionary(String id) {
+		return groupRepository.findByDicId(id);
+	}
+
+	// grupe rjeci ili recenica za rjecnik
+	public List<Group> getGroupsForDictionaryByType(String id, String type) {
 		return groupRepository.findByDicIdAndType(id, type);
+	}
+
+	// update grupa ako se doda nova stavka
+	public void increaseItemsInGroup(String groupId) {
+		Group group = findById(groupId);
+		group.setNumOfItems(group.getNumOfItems() + 1);
+		groupRepository.save(group);
+	}
+
+	// update grupe ako se ukloni stavka
+	public void decreaseItemsInGroup(String groupId) {
+		Group group = findById(groupId);
+		group.setNumOfItems(group.getNumOfItems() - 1);
+		groupRepository.save(group);
+	}
+
+	// update grupe ako se promjeni grupa
+	public void changeGroup(String oldGroupId, String newGroupId) {
+		decreaseItemsInGroup(oldGroupId);
+		increaseItemsInGroup(newGroupId);
+	}
+
+	public void updateNumOfItemsInGroup(String groupId, int newNum) {
+		Group group = findById(groupId);
+		group.setNumOfItems(newNum);
+		groupRepository.save(group);
 	}
 
 }
