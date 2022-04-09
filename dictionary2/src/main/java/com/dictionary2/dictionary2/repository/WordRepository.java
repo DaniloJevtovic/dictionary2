@@ -1,5 +1,6 @@
 package com.dictionary2.dictionary2.repository;
 
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,4 +13,13 @@ public interface WordRepository extends MongoRepository<Word, String> {
 	Page<Word> findByDicId(String id, Pageable pageable);
 
 	Page<Word> findByWgId(String id, Pageable pageable);
+
+	List<Word> findByDicIdAndWordContainsOrDicIdAndTranslateContains(String id, String word, String id2,
+			String translate);
+
+	List<Word> findByWgIdAndWordContainsOrWgIdAndTranslateContains(String wgId, String word, String wg1Id,
+			String translate);
+
+	Long countByWgId(Long wgId);
+
 }
