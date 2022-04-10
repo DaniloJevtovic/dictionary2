@@ -20,7 +20,7 @@ public class GrammarController extends CrudController<Grammar> {
 	private GrammarService grammarService;
 
 	@GetMapping("/dic/{id}")
-	public Page<Grammar> getGrammarsForDic(@PathVariable String id, @PageableDefault(size = 1) Pageable pageable) {
+	public Page<Grammar> getGrammarsForDic(@PathVariable String id, @PageableDefault(size = 30) Pageable pageable) {
 		return grammarService.getGrammarsForDictionary(id, pageable);
 	}
 
