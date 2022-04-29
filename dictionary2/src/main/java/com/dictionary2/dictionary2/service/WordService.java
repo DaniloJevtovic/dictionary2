@@ -49,12 +49,12 @@ public class WordService implements CrudService<Word> {
 		return wordRepository.findByWgId(wgId, pageable);
 	}
 
-	public List<Word> searchInDic(String id, String value) {
-		return wordRepository.findByDicIdAndWordContainsOrDicIdAndTranslateContains(id, value, id, value);
+	public Page<Word> searchInDic(String id, String value, Pageable pageable) {
+		return wordRepository.findByDicIdAndWordContainsOrDicIdAndTranslateContains(id, value, id, value, pageable);
 	}
 
-	public List<Word> searchInWg(String id, String value) {
-		return wordRepository.findByWgIdAndWordContainsOrWgIdAndTranslateContains(id, value, id, value);
+	public Page<Word> searchInWg(String id, String value, Pageable pageable) {
+		return wordRepository.findByWgIdAndWordContainsOrWgIdAndTranslateContains(id, value, id, value, pageable);
 	}
 
 	public void updateFav(String id, Boolean favorite) {
