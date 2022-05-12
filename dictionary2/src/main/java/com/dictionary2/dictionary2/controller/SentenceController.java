@@ -29,9 +29,20 @@ public class SentenceController extends CrudController<Sentence> {
 	public Page<Sentence> getWordsForSg(@PathVariable String id, @PageableDefault(size = 30) Pageable pageable) {
 		return sentenceService.getSentencesForGroup(id, pageable);
 	}
-	
+
+	@GetMapping("/dic/{id}/search/{value}")
+	public Page<Sentence> searchInDic(@PathVariable String id, @PathVariable String value, Pageable pageable) {
+		return sentenceService.searchInDic(id, value, pageable);
+	}
+
+	@GetMapping("/sg/{id}/search/{value}")
+	public Page<Sentence> searchInWg(@PathVariable String id, @PathVariable String value, Pageable pageable) {
+		return sentenceService.searchInSg(id, value, pageable);
+	}
+
 	@PatchMapping("/{id}/favorite/{value}")
 	public void updateFav(@PathVariable String id, @PathVariable Boolean value) {
 		sentenceService.updateFav(id, value);
 	}
+
 }

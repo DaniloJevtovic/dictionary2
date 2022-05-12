@@ -49,6 +49,16 @@ public class SentenceService implements CrudService<Sentence> {
 		return sentenceRepository.findBySgId(sgId, pageable);
 	}
 
+	public Page<Sentence> searchInDic(String id, String value, Pageable pageable) {
+		return sentenceRepository.findByDicIdAndSentenceContainsOrDicIdAndTranslateContains(id, value, id, value,
+				pageable);
+	}
+
+	public Page<Sentence> searchInSg(String id, String value, Pageable pageable) {
+		return sentenceRepository.findBySgIdAndSentenceContainsOrSgIdAndTranslateContains(id, value, id, value,
+				pageable);
+	}
+
 	public void updateFav(String id, Boolean favorite) {
 		Sentence sentence = findById(id);
 		sentence.setFavorite(favorite);
