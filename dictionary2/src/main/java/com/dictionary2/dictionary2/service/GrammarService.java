@@ -44,4 +44,8 @@ public class GrammarService implements CrudService<Grammar> {
 	public Page<Grammar> getGrammarsForDictionary(String dicId, Pageable pageable) {
 		return grammarRepository.findByDicId(dicId, pageable);
 	}
+
+	public Page<Grammar> searchByTitle(String dicId, String title, Pageable pageable) {
+		return grammarRepository.findByDicIdAndTitleContains(dicId, title, pageable);
+	}
 }

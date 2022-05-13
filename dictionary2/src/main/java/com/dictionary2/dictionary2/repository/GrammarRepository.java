@@ -9,4 +9,6 @@ import com.dictionary2.dictionary2.model.Grammar;
 public interface GrammarRepository extends MongoRepository<Grammar, String> {
 
 	Page<Grammar> findByDicId(String id, Pageable pageable);
+
+	Page<Grammar> findByDicIdAndTitleContains(String dicId, String title, Pageable pageable);
 }
