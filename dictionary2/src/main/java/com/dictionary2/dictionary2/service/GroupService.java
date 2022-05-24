@@ -52,28 +52,16 @@ public class GroupService implements CrudService<Group> {
 	}
 
 	// update grupa ako se doda nova stavka
-	public void increaseItemsInGroup(String groupId) {
+	public void increaseNumOfItems(String groupId) {
 		Group group = findById(groupId);
 		group.setNumOfItems(group.getNumOfItems() + 1);
 		groupRepository.save(group);
 	}
 
 	// update grupe ako se ukloni stavka
-	public void decreaseItemsInGroup(String groupId) {
+	public void decreaseNumOfItems(String groupId) {
 		Group group = findById(groupId);
 		group.setNumOfItems(group.getNumOfItems() - 1);
-		groupRepository.save(group);
-	}
-
-	// update grupe ako se promjeni grupa
-	public void changeGroup(String oldGroupId, String newGroupId) {
-		decreaseItemsInGroup(oldGroupId);
-		increaseItemsInGroup(newGroupId);
-	}
-
-	public void updateNumOfItemsInGroup(String groupId, int newNum) {
-		Group group = findById(groupId);
-		group.setNumOfItems(newNum);
 		groupRepository.save(group);
 	}
 

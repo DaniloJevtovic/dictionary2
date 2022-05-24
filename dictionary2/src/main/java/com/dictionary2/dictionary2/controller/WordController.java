@@ -7,6 +7,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,6 +40,11 @@ public class WordController extends CrudController<Word> {
 	@GetMapping("/wg/{id}/search/{value}")
 	public Page<Word> searchInWg(@PathVariable String id, @PathVariable String value, Pageable pageable) {
 		return wordService.searchInWg(id, value, pageable);
+	}
+	
+	@PostMapping("/mode/{mode}")
+	public Word saveWord(@RequestBody Word word, @PathVariable String mode) {
+		return wordService.saveWord(word, mode);
 	}
 
 	@PatchMapping("/{id}/favorite/{value}")

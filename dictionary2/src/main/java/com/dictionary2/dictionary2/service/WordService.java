@@ -15,6 +15,9 @@ public class WordService implements CrudService<Word> {
 
 	@Autowired
 	private WordRepository wordRepository;
+	
+	@Autowired
+	private GroupService groupService;
 
 	@Override
 	public List<Word> findAll() {
@@ -35,9 +38,26 @@ public class WordService implements CrudService<Word> {
 	public Word save(Word t) {
 		return wordRepository.save(t);
 	}
+	
+	public Word saveWord(Word word, String mode) {
+		if(mode.equals("new"))
+			groupService.increaseNumOfItems(word.getWgId());
+		else {
+			Word originalWord = findById(word.getId());
+			
+			if(!originalWord.getWgId().equals(word.getWgId())) {
+				groupService.decreaseNumOfItems(originalWord.getWgId());
+				groupService.increaseNumOfItems(word.getWgId());
+			}
+		}
+		
+		return wordRepository.save(word);
+	}
 
 	@Override
 	public void deleteById(String id) {
+		Word word = findById(id);
+		groupService.decreaseNumOfItems(word.getWgId());
 		wordRepository.deleteById(id);
 	}
 
