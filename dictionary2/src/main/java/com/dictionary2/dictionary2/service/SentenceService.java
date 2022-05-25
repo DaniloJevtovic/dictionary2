@@ -56,6 +56,8 @@ public class SentenceService implements CrudService<Sentence> {
 
 	@Override
 	public void deleteById(String id) {
+		Sentence sentence = findById(id);
+		groupService.decreaseNumOfItems(sentence.getSgId());
 		sentenceRepository.deleteById(id);
 	}
 
