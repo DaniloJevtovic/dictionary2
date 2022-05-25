@@ -7,6 +7,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,6 +40,11 @@ public class SentenceController extends CrudController<Sentence> {
 	@GetMapping("/sg/{id}/search/{value}")
 	public Page<Sentence> searchInWg(@PathVariable String id, @PathVariable String value, Pageable pageable) {
 		return sentenceService.searchInSg(id, value, pageable);
+	}
+
+	@PostMapping("/mode/{mode}")
+	public Sentence saveSentence(@RequestBody Sentence sentence, @PathVariable String mode) {
+		return sentenceService.saveSentence(sentence, mode);
 	}
 
 	@PatchMapping("/{id}/favorite/{value}")

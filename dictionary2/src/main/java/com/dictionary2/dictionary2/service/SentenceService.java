@@ -16,6 +16,9 @@ public class SentenceService implements CrudService<Sentence> {
 	@Autowired
 	private SentenceRepository sentenceRepository;
 
+	@Autowired
+	private GroupService groupService;
+
 	@Override
 	public List<Sentence> findAll() {
 		return sentenceRepository.findAll();
@@ -34,6 +37,21 @@ public class SentenceService implements CrudService<Sentence> {
 	@Override
 	public Sentence save(Sentence t) {
 		return sentenceRepository.save(t);
+	}
+
+	public Sentence saveSentence(Sentence sentence, String mode) {
+		if (mode.equals("new"))
+			groupService.increaseNumOfItems(sentence.getSgId());
+		else {
+			Sentence originalSentence = findById(sentence.getId());
+
+			if (!originalSentence.getSgId().equals(sentence.getSgId())) {
+				groupService.decreaseNumOfItems(originalSentence.getSgId());
+				groupService.increaseNumOfItems(sentence.getSgId());
+			}
+		}
+
+		return sentenceRepository.save(sentence);
 	}
 
 	@Override
