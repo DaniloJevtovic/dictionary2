@@ -16,6 +16,18 @@ public class DictionaryService implements CrudService<Dictionary> {
 	@Autowired
 	private DictionaryRepository dictionaryRepository;
 
+	@Autowired
+	GroupService groupService;
+
+	@Autowired
+	SentenceService sentenceService;
+
+	@Autowired
+	WordService wordService;
+
+	@Autowired
+	GrammarService grammarService;
+
 	@Override
 	public List<Dictionary> findAll() {
 		return dictionaryRepository.findAll();
@@ -38,6 +50,12 @@ public class DictionaryService implements CrudService<Dictionary> {
 
 	@Override
 	public void deleteById(String id) {
+		// brisanje svih grupa, rjeci, recenica i gramatika
+		groupService.deleteAllGroupsForDic(id);
+		wordService.deleteAllWordsForDic(id);
+		sentenceService.deleteAllSentencesForDic(id);
+		grammarService.deleteAllGrammarsForDic(id);
+
 		dictionaryRepository.deleteById(id);
 	}
 
