@@ -85,4 +85,12 @@ public class SentenceService implements CrudService<Sentence> {
 		sentenceRepository.save(sentence);
 	}
 
+	public Long deleteAllSentencesForDic(String dicId) {
+		return sentenceRepository.removeByDicId(dicId);
+	}
+
+	public Long deleteAllSentencesForSg(String sgId) {
+		return sentenceRepository.removeBySgId(sgId);
+	}
+
 }
