@@ -16,6 +16,12 @@ public class GroupService implements CrudService<Group> {
 	@Autowired
 	private GroupRepository groupRepository;
 
+	@Autowired
+	private WordService wordService;
+
+	@Autowired
+	private SentenceService sentenceService;
+
 	@Override
 	public List<Group> findAll() {
 		return groupRepository.findAll();
@@ -38,6 +44,13 @@ public class GroupService implements CrudService<Group> {
 
 	@Override
 	public void deleteById(String id) {
+		Group group = findById(id);
+
+		if (group.getType().toString().equals("WGROUP"))
+			wordService.deleteAllWordsForWg(id);
+		else
+			sentenceService.deleteAllSentencesForSg(id);
+
 		groupRepository.deleteById(id);
 	}
 
@@ -63,6 +76,10 @@ public class GroupService implements CrudService<Group> {
 		Group group = findById(groupId);
 		group.setNumOfItems(group.getNumOfItems() - 1);
 		groupRepository.save(group);
+	}
+
+	public Long deleteAllGroupsForDic(String dicId) {
+		return groupRepository.removeByDicId(dicId);
 	}
 
 }
