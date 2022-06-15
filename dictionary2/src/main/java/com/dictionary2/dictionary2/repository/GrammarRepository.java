@@ -10,5 +10,7 @@ public interface GrammarRepository extends MongoRepository<Grammar, String> {
 
 	Page<Grammar> findByDicId(String id, Pageable pageable);
 
-	Page<Grammar> findByDicIdAndTitleContains(String dicId, String title, Pageable pageable);
+	Page<Grammar> findByDicIdAndGrammarContains(String dicId, String grammar, Pageable pageable);
+	
+	Long removeByDicId(String dicId);
 }

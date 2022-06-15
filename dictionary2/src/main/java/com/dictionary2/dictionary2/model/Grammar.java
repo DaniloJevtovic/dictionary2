@@ -12,7 +12,7 @@ public class Grammar {
 	@Id
 	private String id;
 
-	private String title;
+	private String grammar;
 
 	private String content;
 

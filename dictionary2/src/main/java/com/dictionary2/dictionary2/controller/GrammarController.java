@@ -23,10 +23,10 @@ public class GrammarController extends CrudController<Grammar> {
 	public Page<Grammar> getGrammarsForDic(@PathVariable String id, @PageableDefault(size = 30) Pageable pageable) {
 		return grammarService.getGrammarsForDictionary(id, pageable);
 	}
-	
-	@GetMapping("/dic/{id}/search/{title}")
-	public Page<Grammar> searchByTitle(@PathVariable String id, @PathVariable String title, Pageable pageable) {
-		return grammarService.searchByTitle(id, title, pageable);
+
+	@GetMapping("/dic/{id}/search/{grammar}")
+	public Page<Grammar> searchByGrammar(@PathVariable String id, @PathVariable String grammar, Pageable pageable) {
+		return grammarService.searchByGrammar(id, grammar, pageable);
 	}
 
 }
