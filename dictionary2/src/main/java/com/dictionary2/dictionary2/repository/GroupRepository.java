@@ -11,5 +11,7 @@ public interface GroupRepository extends MongoRepository<Group, String> {
 	List<Group> findByDicId(String id);
 
 	List<Group> findByDicIdAndType(String id, String type);
+	
+	Long removeByDicId(String dicId);
 
 }
