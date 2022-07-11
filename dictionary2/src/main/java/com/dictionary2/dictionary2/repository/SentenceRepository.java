@@ -19,4 +19,8 @@ public interface SentenceRepository extends MongoRepository<Sentence, String> {
 	Page<Sentence> findBySgIdAndSentenceContainsOrSgIdAndTranslateContains(String wgId, String sentence, String wg1Id,
 			String translate, Pageable pageable);
 
+	Long removeByDicId(String dicId);
+
+	Long removeBySgId(String sgId);
+
 }
