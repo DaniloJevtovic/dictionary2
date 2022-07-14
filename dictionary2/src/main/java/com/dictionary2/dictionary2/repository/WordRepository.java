@@ -20,4 +20,8 @@ public interface WordRepository extends MongoRepository<Word, String> {
 
 	Long countByWgId(Long wgId);
 
+	Long removeByDicId(String dicId);
+
+	Long removeByWgId(String wgId);
+
 }
